@@ -1,5 +1,3 @@
-from email.policy import default
-from secrets import choice
 from django.db import models
 
 
@@ -13,6 +11,9 @@ class User(models.Model):
     name = models.TextField()
     email = models.EmailField()
     role = models.TextField(choices=ROLES)
+
+    def __str__(self) -> str:
+        return f"{self.name} ({self.email})"
 
 
 class Chart(models.Model):
