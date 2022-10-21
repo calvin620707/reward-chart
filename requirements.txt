@@ -1,0 +1,5 @@
+Django
+isort
+flake8
+black
+pre-commit
