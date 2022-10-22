@@ -45,16 +45,18 @@
           {% endfor %}
         </div>
       </div>
+      <form action="{% url 'increase_points' chart.id %}" method="post">
+        {% csrf_token %}
+        <button class="btn add-btn" name="add" value="">
+          <img src="{% static 'main/add.svg' %}" />Add Point
+        </button>
+      </form>
+      <form action="{% url 'redeem' chart.id %}" method="post">
+        <button class="btn redeem-btn" name="redeem" value="">
+          {% csrf_token %}
+          <img src="{% static 'main/emoticon.svg' %}" />Redeem
+        </button>
+      </form>
     </div>
-
-    <form action="{% url 'increase_points' chart.id %}" method="post">
-      {% csrf_token %}
-      <button name="add" value="">Add</button>
-    </form>
-    <form action="{% url 'redeem' chart.id %}" method="post">
-      {% csrf_token %}
-      <button name="redeem" value="">Redeem</button>
-    </form>
-    <p>{{ now }}</p>
   </body>
 </html>
