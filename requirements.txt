@@ -1,7 +1,9 @@
 Django
+whitenoise
+gunicorn
+dj-database-url
+# TODO: move to requirements-dev.txt
 isort
 flake8
 black
 pre-commit
-ansible
-gunicorn
