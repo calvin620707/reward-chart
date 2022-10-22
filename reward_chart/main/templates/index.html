@@ -29,10 +29,17 @@
     </div>
     <div class="body-container">
       <p style="color: white">You have {{chart.points}} points</p>
+      <div class="board-bg">
+        <div class="board">
+          {% for dp in display_points %}
+          <div class="board-item">
+            <div class="board-bg-dot"></div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
     </div>
 
-    <h1>{{ chart.name }}</h1>
-    <p>{{ chart.points }}</p>
     <form action="{% url 'increase_points' chart.id %}" method="post">
       {% csrf_token %}
       <button name="add" value="">Add</button>
@@ -42,8 +49,5 @@
       <button name="redeem" value="">Redeem</button>
     </form>
     <p>{{ now }}</p>
-
-    <h1>Rules</h1>
-    1. 10湯姆熊遊樂場
   </body>
 </html>

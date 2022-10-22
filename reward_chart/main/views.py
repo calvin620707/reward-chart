@@ -3,9 +3,25 @@ from django.shortcuts import render, get_object_or_404, redirect
 from .models import Chart
 from datetime import datetime
 
+POINT_PER_PAGE = 8
 
-def _prepare_context(chart: Chart) -> dict:
-    return {"chart": chart, "now": datetime.now().isoformat()}
+
+def _prepare_context(chart: Chart, page=0) -> dict:
+    display_point_number = chart.points - ((page + 1) * 8)
+
+    display_points = []
+
+    for i in range(POINT_PER_PAGE):
+        if i < display_point_number:
+            display_points.append({"show_point": True})
+        else:
+            display_points.append({"show_point": False})
+
+    return {
+        "chart": chart,
+        "now": datetime.now().isoformat(),
+        "display_points": display_points,
+    }
 
 
 def _render_index(request, chart):
