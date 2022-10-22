@@ -1,0 +1,101 @@
+body {
+  --main-color: #a1754c;
+  font-family: "Roboto", sans-serif;
+  --board-padding: 35px;
+}
+.bg-dot {
+  position: absolute;
+  height: 100vh;
+  width: 100vh;
+  background-color: var(--main-color);
+  border-radius: 50%;
+  display: inline-block;
+}
+.bg-container {
+  z-index: -1;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  top: 0%;
+  left: 50%;
+  transform: translate(-50%, -70%);
+}
+.head-container {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.head-point-bg-dot {
+  z-index: -1;
+  position: absolute;
+  height: 100px;
+  width: 100px;
+  background-color: #7a512a;
+  border-radius: 50%;
+  display: inline-block;
+}
+.body-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.board-bg {
+  width: 310px;
+  height: 438px;
+  background: #ffffff;
+  box-shadow: 0px 4.1165px 14.4078px 6.17476px rgba(206, 206, 206, 0.25);
+  border-radius: 16.466px;
+  z-index: 0;
+}
+.board {
+  display: grid;
+  grid-template-columns: 90px 90px;
+  grid-template-rows: repeat(4, 1fr);
+  justify-content: space-between;
+  z-index: 1;
+  padding: var(--board-padding);
+  width: calc(100% - var(--board-padding) * 2);
+  height: calc(100% - var(--board-padding) * 2);
+}
+.board-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.board-bg-dot {
+  z-index: 2;
+  position: absolute;
+  height: 72px;
+  width: 72px;
+  background-color: #ececec;
+  border-radius: 50%;
+  display: inline-block;
+}
+.board-point {
+  z-index: 3;
+}
+.btn {
+  width: 310px;
+  height: 48px;
+  border-radius: 32px;
+  display: grid;
+  grid-template-columns: 24px 80px;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+}
+.add-btn {
+  margin-top: 2rem;
+  background: var(--main-color);
+  border-width: 0px;
+  color: white;
+}
+.redeem-btn {
+  margin-top: 1rem;
+  border: 3px solid var(--main-color);
+  background-color: white;
+  color: var(--main-color);
+}
