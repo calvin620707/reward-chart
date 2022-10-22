@@ -1,26 +1,7 @@
 from django.db import models
 
 
-class User(models.Model):
-    PARENT = "P"
-    CHILD = "C"
-    ROLES = [
-        (PARENT, "Parent"),
-        (CHILD, "Child"),
-    ]
-    name = models.TextField()
-    email = models.EmailField()
-    role = models.TextField(choices=ROLES)
-
-    def __str__(self) -> str:
-        return f"{self.name} ({self.email})"
-
-
 class Chart(models.Model):
-    child = models.ForeignKey("User", on_delete=models.CASCADE)
+    name = models.CharField(max_length=128)
     points = models.IntegerField(default=0)
     modified = models.DateTimeField("Last modified date time", auto_now=True)
-    modified_by = models.ForeignKey(
-        "User", on_delete=models.SET_NULL, blank=True, null=True, related_name="+"
-    )
-    members = models.ManyToManyField(User, related_name="members")
