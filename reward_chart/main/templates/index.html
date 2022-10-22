@@ -2,9 +2,34 @@
 <html>
   <head>
     <title>{{ chart.name }}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+      .bg-dot {
+        position: absolute;
+        height: 100vh;
+        width: 100vh;
+        background-color: #a1754c;
+        border-radius: 50%;
+        display: inline-block;
+      }
+      .bg-container {
+        z-index: -1;
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        position: absolute;
+        top: 0%%;
+        left: 50%;
+        transform: translate(-50%, -70%);
+      }
+    </style>
   </head>
 
   <body>
+    <div class="bg-container">
+    <div class="bg-dot"></div>
+    </div>
     <h1>{{ chart.name }}</h1>
     <p>{{ chart.points }}</p>
     <form action="{% url 'increase_points' chart.id %}" method="post">
@@ -16,5 +41,8 @@
       <button name="redeem" value="">Redeem</button>
     </form>
     <p>{{ now }}</p>
+
+    <h1>Rules</h1>
+    1. 10湯姆熊遊樂場
   </body>
 </html>
