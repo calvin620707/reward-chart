@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 
 from .models import Chart
 from datetime import datetime
@@ -21,11 +21,11 @@ def increase_points(request, chart_id):
     chart = get_object_or_404(Chart, pk=chart_id)
     chart.points += 1
     chart.save()
-    return _render_index(request, chart)
+    return redirect("index")
 
 
 def redeem(request, chart_id):
     chart = get_object_or_404(Chart, pk=chart_id)
     chart.points -= 1
     chart.save()
-    return _render_index(request, chart)
+    return redirect("index")

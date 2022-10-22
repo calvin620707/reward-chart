@@ -11,6 +11,10 @@
       {% csrf_token %}
       <button name="add" value="">Add</button>
     </form>
+    <form action="{% url 'redeem' chart.id %}" method="post">
+      {% csrf_token %}
+      <button name="redeem" value="">Redeem</button>
+    </form>
     <p>{{ now }}</p>
   </body>
 </html>
