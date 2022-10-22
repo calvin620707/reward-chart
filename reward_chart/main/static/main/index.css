@@ -1,7 +1,7 @@
 body {
   --main-color: #a1754c;
   font-family: "Roboto", sans-serif;
-  --board-padding: 35px;
+  --board-padding: 32px;
 }
 .bg-dot {
   position: absolute;
@@ -68,8 +68,8 @@ body {
 .board-bg-dot {
   z-index: 2;
   position: absolute;
-  height: 72px;
-  width: 72px;
+  height: 56px;
+  width: 56px;
   background-color: #ececec;
   border-radius: 50%;
   display: inline-block;
