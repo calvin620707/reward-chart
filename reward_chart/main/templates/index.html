@@ -33,6 +33,13 @@
         <div class="board">
           {% for dp in display_points %}
           <div class="board-item">
+            {% if dp.show_point %}
+            <img
+              class="board-point"
+              src="{% static 'main/point.svg' %}"
+              alt="Point"
+            />
+            {% endif %}
             <div class="board-bg-dot"></div>
           </div>
           {% endfor %}

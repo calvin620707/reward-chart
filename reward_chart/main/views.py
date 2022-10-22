@@ -7,7 +7,7 @@ POINT_PER_PAGE = 8
 
 
 def _prepare_context(chart: Chart, page=0) -> dict:
-    display_point_number = chart.points - ((page + 1) * 8)
+    display_point_number = chart.points - ((page) * 8)
 
     display_points = []
 
