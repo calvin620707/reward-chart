@@ -1,1 +1,1 @@
-web: gunicorn --chdir ./reward_chart reward_chart:app
+web: gunicorn --chdir ./reward_chart reward_chart.wsgi:application
