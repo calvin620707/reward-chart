@@ -1,0 +1,56 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta name="description" content="Reward Chart"/>
+        <meta name="keywords" content="Reward Chart"/>
+        <title>
+            {% block title %}
+                Reward Chart
+            {% endblock title %}
+        </title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="icon" type="image/x-icon" href="{% static 'main/point.svg' %}" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
+              rel="stylesheet"/>
+        <link rel="stylesheet" href="{% static 'main/index.css' %}" />
+        <meta name="google-site-verification"
+              content="5vemINFSXz3jJ16_RTDlkK5tAhxJNFCnxemNbe9s-3g"/>
+        <style>
+      @font-face {
+        font-family: "Cute Font";
+        src: url("{%static 'main/CuteFont-Regular.ttf' %}") format("truetype");
+      }
+        </style>
+    </head>
+    <body>
+        <div class="bg-container">
+            <div class="bg-dot"></div>
+        </div>
+        <div class="head-container">
+            <img src="{% static 'main/avatar.svg' %}" alt="Avatar" />
+            <h1>
+                {% block chart_name %}{% endblock %}
+            </h1>
+        </div>
+        <div class="body-container">
+            <p class="point-description">
+                You have
+                {% block chart_points %}
+                    unknown
+                {% endblock chart_points %}
+                points
+            </p>
+            <div class="board-bg">
+                <div class="board">
+                    {% block board_body %}
+                    {% endblock board_body %}
+                </div>
+            </div>
+            {% block body %}
+            {% endblock body %}
+        </div>
+    </body>
+</html>

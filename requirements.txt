@@ -9,3 +9,4 @@ flake8
 black
 pre-commit
 ipython
+djlint

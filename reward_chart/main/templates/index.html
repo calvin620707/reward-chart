@@ -1,69 +1,42 @@
+{% extends "base.html" %}
 {% load static %}
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>{{ chart.name }} Reward Chart</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/x-icon" href="{% static 'main/point.svg' %}" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="{% static 'main/index.css' %}" />
-    <meta
-      name="google-site-verification"
-      content="5vemINFSXz3jJ16_RTDlkK5tAhxJNFCnxemNbe9s-3g"
-    />
-    <style>
-      @font-face {
-        font-family: "Cute Font";
-        src: url("{%static 'main/CuteFont-Regular.ttf' %}") format("truetype");
-      }
-    </style>
-  </head>
-
-  <body>
-    <div class="bg-container">
-      <div class="bg-dot"></div>
+{% block title %}
+  {{ chart.name }} Reward Chart
+{% endblock title %}
+{% block chart_name %}
+  {{ chart.name|upper }}
+{% endblock chart_name %}
+{% block chart_points %}
+  {{ chart.points }}
+{% endblock chart_points %}
+{% block board_body %}
+  {% for dp in display_points %}
+    <div class="board-item">
+      {% if dp.show_point %}
+        <img class="board-point"
+             src="{% static 'main/point.svg' %}"
+             alt="Point"
+             height="70px"
+             width="70px"/>
+      {% else %}
+        <div class="board-bg-dot"></div>
+      {% endif %}
     </div>
-
-    <div class="head-container">
-      <img src="{% static 'main/avatar.svg' %}" alt="Avatar" />
-      <h1>{{ chart.name|upper }}</h1>
-    </div>
-    <div class="body-container">
-      <p class="point-description">You have {{chart.points}} points</p>
-      <div class="board-bg">
-        <div class="board">
-          {% for dp in display_points %}
-          <div class="board-item">
-            {% if dp.show_point %}
-            <img
-              class="board-point"
-              src="{% static 'main/point.svg' %}"
-              alt="Point"
-            />
-            {% else %}
-            <div class="board-bg-dot"></div>
-            {% endif %}
-          </div>
-          {% endfor %}
-        </div>
-      </div>
-      <form action="{% url 'increase_points' chart.id %}" method="post">
-        {% csrf_token %}
-        <button class="btn add-btn" name="add" value="">
-          <img src="{% static 'main/add.svg' %}" />Add Point
-        </button>
-      </form>
-      <form action="{% url 'redeem' chart.id %}" method="post">
-        {% csrf_token %}
-        <button class="btn redeem-btn" name="redeem" value="">
-          <img src="{% static 'main/emoticon.svg' %}" />Redeem
-        </button>
-      </form>
-    </div>
-  </body>
-</html>
+  {% endfor %}
+{% endblock board_body %}
+{% block body %}
+  <form action="{% url 'increase_points' chart.id %}" method="post">
+    {% csrf_token %}
+    <button class="btn add-btn" name="add" value="">
+      <img src="{% static 'main/add.svg' %}" />
+      Add Point
+    </button>
+  </form>
+  <form action="{% url 'redeem' chart.id %}" method="post">
+    {% csrf_token %}
+    <button class="btn redeem-btn" name="redeem" value="">
+      <img src="{% static 'main/emoticon.svg' %}" />
+      Redeem
+    </button>
+  </form>
+{% endblock body %}
