@@ -1,4 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
+from django.http import HttpResponse
 
 from .models import Chart
 from datetime import datetime
@@ -29,7 +30,11 @@ def _render_index(request, chart):
 
 
 def index(request):
-    chart = Chart.objects.first()
+    try:
+        chart = Chart.objects.first()
+    except Chart.DoesNotExist:
+        return HttpResponse("Create a Chart first.")
+
     return _render_index(request, chart)
 
 
