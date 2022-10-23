@@ -2,14 +2,9 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>{{ chart.name }}</title>
+    <title>{{ chart.name }} Reward Chart</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="stylesheet"
-      h<link
-      rel="preconnect"
-      href="https://fonts.googleapis.com"
-    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
@@ -20,6 +15,12 @@
       name="google-site-verification"
       content="5vemINFSXz3jJ16_RTDlkK5tAhxJNFCnxemNbe9s-3g"
     />
+    <style>
+      @font-face {
+        font-family: "Cute Font";
+        src: url({% static 'main/CuteFont-Regular.ttf' %}) format("truetype");
+      }
+    </style>
   </head>
 
   <body>
@@ -28,11 +29,11 @@
     </div>
 
     <div class="head-container">
-      <img src="{% static 'main/point.svg' %}" alt="Point" />
-      <div class="head-point-bg-dot"></div>
+      <img src="{% static 'main/avatar.svg' %}" alt="Avatar" />
+      <h1>{{ chart.name|upper }}</h1>
     </div>
     <div class="body-container">
-      <p style="color: white">You have {{chart.points}} points</p>
+      <p class="point-description">You have {{chart.points}} points</p>
       <div class="board-bg">
         <div class="board">
           {% for dp in display_points %}

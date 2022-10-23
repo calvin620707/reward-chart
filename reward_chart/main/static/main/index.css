@@ -25,24 +25,35 @@ body {
 }
 .head-container {
   margin-top: 2rem;
-  display: flex;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: 72px auto;
+  column-gap: 1rem;
   align-items: center;
+  justify-content: center;
+  min-width: 200px;
 }
-.head-point-bg-dot {
-  z-index: -1;
-  position: absolute;
-  height: 100px;
-  width: 100px;
-  background-color: #7a512a;
-  border-radius: 50%;
-  display: inline-block;
+.head-container h1 {
+  min-width: 72px;
+  text-align: center;
+  color: #ffdab9;
+  font-family: "Cute Font";
+  font-size: 66px;
+  line-height: 0px;
 }
 .body-container {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+}
+.point-description {
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 16px;
+  color: white;
+  width: 200px;
+  height: 30px;
+  text-align: center;
+  line-height: 30px;
 }
 .board-bg {
   width: 310px;
