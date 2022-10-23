@@ -1,5 +1,8 @@
 {% extends "base.html" %}
 {% load static %}
+{% block extra_heads %}
+  <link rel="stylesheet" href="{% static 'main/index.css' %}" />
+{% endblock extra_heads %}
 {% block title %}
   {{ chart.name }} Reward Chart
 {% endblock title %}
@@ -37,11 +40,11 @@
       Add Point
     </button>
   </form>
-  <a class="btn redeem-btn" href="{% url 'redeem_center' chart.id %}">
-    <img src="{% static 'main/emoticon.svg' %}"
-         height="24px"
-         width="24px"
-         alt="Redeem icon"/>
-    Redeem
+  <a href="{% url 'redeem_center' chart.id %}">
+    <img class="redeem-center-btn"
+         src="{% static 'main/redeem_center_btn.svg' %}"
+         alt="Redeem center"
+         height="60px"
+         width="60px"/>
   </a>
 {% endblock body %}
