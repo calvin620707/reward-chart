@@ -4,7 +4,7 @@ from django.http import HttpResponse
 from .models import Chart
 from datetime import datetime
 
-POINT_PER_PAGE = 8
+POINT_PER_PAGE = 6
 
 
 def _prepare_context(chart: Chart) -> dict:
