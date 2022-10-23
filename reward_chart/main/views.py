@@ -1,3 +1,4 @@
+import re
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse
 
@@ -48,7 +49,16 @@ def increase_points(request, chart_id):
 
 def redeem(request, chart_id):
     chart = get_object_or_404(Chart, pk=chart_id)
-    chart.points -= 1
+    redeem_points = int(request.POST["redeem_points"])
+    if redeem_points > chart.points:
+        return HttpResponse(
+            "Forbidden."
+            f" You only have {chart.points},"
+            f" but you tried to redeem {redeem_points}.",
+            status=400,
+        )
+
+    chart.points -= redeem_points
     chart.save()
     return redirect("index")
 
