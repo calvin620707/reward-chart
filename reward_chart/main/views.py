@@ -1,18 +1,18 @@
-import re
 from django.shortcuts import render, get_object_or_404, redirect
+import math
 from django.http import HttpResponse
 
 from .models import Chart
 from datetime import datetime
 
-POINT_PER_PAGE = 6
+POINT_PER_PAGE = 9
 REDEEM_OPTIONS = (2, 4, 6, 8)
 
 
 def _prepare_context(chart: Chart) -> dict:
     display_points = []
     point_slots = max(POINT_PER_PAGE, chart.points)
-    point_slots += point_slots % 2
+    point_slots = math.ceil(point_slots / 3) * 3
 
     for i in range(point_slots):
         if i < chart.points:

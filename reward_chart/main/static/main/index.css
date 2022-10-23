@@ -1,3 +1,36 @@
+.board {
+  display: flex;
+  justify-content: space-between;
+  z-index: 1;
+  padding: var(--board-padding);
+  width: calc(100% - var(--board-padding) * 2);
+  height: calc(100% - var(--board-padding) * 2);
+  overflow: scroll;
+  flex-flow: wrap;
+  align-items: center;
+}
+.board-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 112px;
+  width: 82px;
+}
+.board-bg-dot {
+  z-index: 2;
+  position: relative;
+  height: 56px;
+  width: 56px;
+  background-color: #ececec;
+  border-radius: 50%;
+  display: inline-block;
+}
+.add-btn {
+  margin-top: 2rem;
+  background: var(--main-color);
+  border-width: 0px;
+  color: white;
+}
 .redeem-center-btn {
   position: absolute;
   top: 24px;
