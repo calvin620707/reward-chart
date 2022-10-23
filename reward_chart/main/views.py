@@ -7,13 +7,13 @@ from datetime import datetime
 POINT_PER_PAGE = 8
 
 
-def _prepare_context(chart: Chart, page=0) -> dict:
-    display_point_number = chart.points - ((page) * 8)
-
+def _prepare_context(chart: Chart) -> dict:
     display_points = []
+    point_slots = max(POINT_PER_PAGE, chart.points)
+    point_slots += point_slots % 2
 
-    for i in range(POINT_PER_PAGE):
-        if i < display_point_number:
+    for i in range(point_slots):
+        if i < chart.points:
             display_points.append({"show_point": True})
         else:
             display_points.append({"show_point": False})

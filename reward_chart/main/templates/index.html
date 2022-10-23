@@ -43,8 +43,9 @@
               src="{% static 'main/point.svg' %}"
               alt="Point"
             />
-            {% endif %}
+            {% else %}
             <div class="board-bg-dot"></div>
+            {% endif %}
           </div>
           {% endfor %}
         </div>
