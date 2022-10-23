@@ -10,33 +10,38 @@
   {{ chart.points }}
 {% endblock chart_points %}
 {% block board_body %}
-  {% for dp in display_points %}
-    <div class="board-item">
-      {% if dp.show_point %}
-        <img class="board-point"
-             src="{% static 'main/point.svg' %}"
-             alt="Point"
-             height="70px"
-             width="70px"/>
-      {% else %}
-        <div class="board-bg-dot"></div>
-      {% endif %}
-    </div>
-  {% endfor %}
+  <div class="board">
+    {% for dp in display_points %}
+      <div class="board-item">
+        {% if dp.show_point %}
+          <img class="board-point"
+               src="{% static 'main/point.svg' %}"
+               alt="Point"
+               height="70px"
+               width="70px"/>
+        {% else %}
+          <div class="board-bg-dot"></div>
+        {% endif %}
+      </div>
+    {% endfor %}
+  </div>
 {% endblock board_body %}
 {% block body %}
   <form action="{% url 'increase_points' chart.id %}" method="post">
     {% csrf_token %}
     <button class="btn add-btn" name="add" value="">
-      <img src="{% static 'main/add.svg' %}" />
+      <img src="{% static 'main/add.svg' %}"
+           height="24px"
+           width="24px"
+           alt="Add icon"/>
       Add Point
     </button>
   </form>
-  <form action="{% url 'redeem' chart.id %}" method="post">
-    {% csrf_token %}
-    <button class="btn redeem-btn" name="redeem" value="">
-      <img src="{% static 'main/emoticon.svg' %}" />
-      Redeem
-    </button>
-  </form>
+  <a class="btn redeem-btn" href="{% url 'redeem_center' chart.id %}">
+    <img src="{% static 'main/emoticon.svg' %}"
+         height="24px"
+         width="24px"
+         alt="Redeem icon"/>
+    Redeem
+  </a>
 {% endblock body %}

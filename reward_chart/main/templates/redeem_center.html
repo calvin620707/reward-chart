@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load static %}
+{% block extra_heads %}
+  <link rel="stylesheet" href="{% static 'main/redeem_center.css' %}" />
+{% endblock extra_heads %}
+{% block title %}
+  {{ chart.name }} Redeem Center
+{% endblock title %}
+{% block chart_name %}
+  {{ chart.name|upper }}
+{% endblock chart_name %}
+{% block chart_points %}
+  {{ chart.points }}
+{% endblock chart_points %}
+{% block board_body %}
+  <div class="option_container">
+    {% for opt in options %}
+      <form action="{% url 'redeem' chart.id %}" method="post">
+        {% csrf_token %}
+        <button class="btn opt-btn" name="redeem_points" value="{{ opt }}">
+          <img src="{% static 'main/point.svg' %}"
+               height="36px"
+               width="36px"
+               alt="Redeem {{ opt }} point"/>
+          - {{ opt }}
+        </button>
+      </form>
+    {% endfor %}
+  </div>
+{% endblock board_body %}

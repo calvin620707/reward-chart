@@ -15,7 +15,7 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
               rel="stylesheet"/>
-        <link rel="stylesheet" href="{% static 'main/index.css' %}" />
+        <link rel="stylesheet" href="{% static 'main/base.css' %}" />
         <meta name="google-site-verification"
               content="5vemINFSXz3jJ16_RTDlkK5tAhxJNFCnxemNbe9s-3g"/>
         <style>
@@ -24,15 +24,21 @@
         src: url("{%static 'main/CuteFont-Regular.ttf' %}") format("truetype");
       }
         </style>
+        {% block extra_heads %}
+        {% endblock extra_heads %}
     </head>
     <body>
         <div class="bg-container">
             <div class="bg-dot"></div>
         </div>
         <div class="head-container">
-            <img src="{% static 'main/avatar.svg' %}" alt="Avatar" />
+            <img src="{% static 'main/avatar.svg' %}"
+                 alt="Avatar"
+                 height="72px"
+                 width="72px"/>
             <h1>
-                {% block chart_name %}{% endblock %}
+                {% block chart_name %}
+                {% endblock chart_name %}
             </h1>
         </div>
         <div class="body-container">
@@ -44,10 +50,8 @@
                 points
             </p>
             <div class="board-bg">
-                <div class="board">
-                    {% block board_body %}
-                    {% endblock board_body %}
-                </div>
+                {% block board_body %}
+                {% endblock board_body %}
             </div>
             {% block body %}
             {% endblock body %}

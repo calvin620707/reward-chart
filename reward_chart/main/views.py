@@ -5,6 +5,7 @@ from .models import Chart
 from datetime import datetime
 
 POINT_PER_PAGE = 6
+REDEEM_OPTIONS = (2, 4, 6, 8)
 
 
 def _prepare_context(chart: Chart) -> dict:
@@ -50,3 +51,10 @@ def redeem(request, chart_id):
     chart.points -= 1
     chart.save()
     return redirect("index")
+
+
+def redeem_center(request, chart_id):
+    chart = get_object_or_404(Chart, pk=chart_id)
+    return render(
+        request, "redeem_center.html", {"chart": chart, "options": REDEEM_OPTIONS}
+    )

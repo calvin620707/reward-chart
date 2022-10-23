@@ -1,0 +1,17 @@
+.option_container {
+    display: grid;
+    grid-row: 4;
+    height: 100%;
+    align-items: center;
+    row-gap: 2rem;
+    align-content: center;
+}
+.opt-btn {
+    width: 80%;
+    background-color: white;
+    color: var(--main-color);
+    font-size: 36px;
+    grid-template-columns: 36px 80px;
+    border-color: var(--main-color);
+    border-style: solid;
+}
