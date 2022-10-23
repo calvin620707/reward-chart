@@ -1,2 +1,2 @@
 web: gunicorn --chdir ./reward_chart reward_chart.wsgi:application
-release: python manage.py migrate
+release: cd reward_chart && python manage.py migrate
