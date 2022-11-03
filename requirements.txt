@@ -3,6 +3,7 @@ whitenoise
 gunicorn
 dj-database-url
 psycopg2
+mysqlclient
 # TODO: move to requirements-dev.txt
 isort
 flake8
@@ -10,3 +11,5 @@ black
 pre-commit
 ipython
 djlint
+ansible
+ansible-lint
