@@ -1,8 +1,10 @@
+ansible = ansible-playbook --ask-vault-pass -i ansible/hosts
+
 pip-install:
 	pip install -r requirements.txt
 
 ansible-pkg:
-	ansible-playbook -i ansible/hosts ansible/packages.yml
+	$(ansible) ansible/packages.yml
 
 ansible-deploy:
-	ansible-playbook -i ansible/hosts ansible/deploy.yml
+	$(ansible) ansible/deploy-django.yml

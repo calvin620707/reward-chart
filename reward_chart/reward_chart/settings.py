@@ -9,6 +9,7 @@ https://docs.djangoproject.com/en/4.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
+import json
 import os
 from pathlib import Path
 
@@ -18,6 +19,7 @@ from django.test.runner import DiscoverRunner
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+IS_PROD = "DYNO" in os.environ or os.environ.get("ENV") == "PROD"
 IS_HEROKU = "DYNO" in os.environ
 
 # Quick-start development settings - unsuitable for production
@@ -34,11 +36,15 @@ if "SECRET_KEY" in os.environ:
 # validation it is ok
 if IS_HEROKU:
     ALLOWED_HOSTS = ["*"]
+elif "ALLOWED_HOSTS" in os.environ:
+    ALLOWED_HOSTS = json.loads(os.environ["ALLOWED_HOSTS"])
 else:
     ALLOWED_HOSTS = []
 
+CSRF_TRUSTED_ORIGINS = ["http://reward-chart.pattydraw.com"]
+
 # SECURITY WARNING: don't run with debug turned on in production!
-if not IS_HEROKU:
+if not IS_PROD:
     DEBUG = True
 
 

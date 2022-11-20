@@ -1,0 +1,38 @@
+---
+- name: Deploy Django
+  hosts: all
+  gather_facts: false
+  vars:
+    dest_dir: /var/www/reward-chart
+    virtualenv: "{{ dest_dir }}/.venv"
+    requirements_changed: true
+  vars_files:
+    - ./secrets.yml
+  environment:
+    SECRET_KEY: "{{ secret_key }}"
+    ENV: PROD
+    ALLOWED_HOSTS: '["pattydraw.com"]'
+  tasks:
+    - name: Upload project
+      ansible.posix.synchronize:
+        src: "{{ item }}"
+        dest: "{{ dest_dir }}"
+      with_items:
+        - ../reward_chart
+        - ../requirements.txt
+      when: requirements_changed
+    - name: PIP install
+      ansible.builtin.pip:
+        virtualenv: "{{ virtualenv }}"
+        requirements: "{{ dest_dir }}/requirements.txt"
+        virtualenv_command: python3 -m venv
+      when: requirements_changed
+    - name: Django DB migration
+      community.general.django_manage:
+        command: migrate
+        virtualenv: "{{ virtualenv }}"
+        project_path: "{{ dest_dir }}/reward_chart"
+    - name: Restart gunicorn
+      community.general.supervisorctl:
+        name: gunicorn
+        state: restarted

@@ -1,5 +1,6 @@
 Django
 whitenoise
+supervisor
 gunicorn
 dj-database-url
 psycopg2
